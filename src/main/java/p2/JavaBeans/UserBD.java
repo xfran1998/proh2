@@ -9,8 +9,8 @@ public class UserBD {
     private String nombre;
     private String apellidos;
     private String domicilio;
-		private String email;
-		private String poblacion;
+	private String email;
+	private String poblacion;
     private String provincia;
     private String cp;
     private String telefono;

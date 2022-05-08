@@ -55,12 +55,11 @@ const replace_animation = (body) => {
 	}, 500);
 };
 
-async function get_page_async(page, method='GET', form_body=null, body=tbody) {
+async function get_page_async(page, method='GET', form_body=null, body=tbody, API=false) {
 	// fetch GET page with the given page name as source/page.html
 	
-	console.log('id: ', body.id);
 	try {
-		replace_animation(body);
+		if (body) replace_animation(body);
 		// let page_url = (page=='')
 		let response_body = {};
 		console.log(JSON.stringify(form_body));
@@ -82,6 +81,8 @@ async function get_page_async(page, method='GET', form_body=null, body=tbody) {
 		
 		response = await fetch(`${page}.html`, response_body);
 		let data = await response.text();
+		
+		if (API) return data; // return data if API is true, not update the page
 
 		setTimeout(() => {
 			body.innerHTML = data;

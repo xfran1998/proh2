@@ -173,7 +173,6 @@ public final class AccesoBD {
             	user.setProvincia(resultado.getString("provincia"));
             	user.setCp(resultado.getString("cp"));
             	user.setTelefono(resultado.getString("telefono"));
-            	System.out.println("User Setted");
             }
             else{
             	System.out.println("User NO Setted");
@@ -248,14 +247,32 @@ public final class AccesoBD {
 
     public void cambiarUsuarioBD(int id_usuario, String campo, String dato){
         abrirConexionBD();
+        System.out.println("Cambiando usuario:" + id_usuario + "-" + campo + "-" + dato);
+        ArrayList<String> whitelist = new ArrayList<String>();
+        //{"usuario", "email", "clave", "nombre", "apellidos", "domicilio", "poblacion", "provincia", "cp", "telefono"};
+        whitelist.add("usuario");
+        whitelist.add("email");
+        whitelist.add("clave");
+        whitelist.add("nombre");
+        whitelist.add("apellidos");
+        whitelist.add("domicilio");
+        whitelist.add("poblacion");
+        whitelist.add("provincia");
+        whitelist.add("cp");
+        whitelist.add("telefono");
+
+        if(!whitelist.contains(campo)) {
+            System.out.println("Campo no permitido: " + campo);
+            return;
+        }
+
 
         try{
             String con;
-            con = "UPDATE usuarios SET ? = ? WHERE usuario = ?";
+            con = "UPDATE usuarios SET " + campo +  "= ? WHERE codigo = ?";
             PreparedStatement stmt = conexionBD.prepareStatement(con);
-            stmt.setString(1, campo);
-            stmt.setString(2, dato);
-            stmt.setInt(3, id_usuario);
+            stmt.setString(1, dato);
+            stmt.setInt(2, id_usuario);
             stmt.executeUpdate();
         }catch(Exception e){
             System.err.println("Error ejecutando cambiar usuario");

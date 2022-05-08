@@ -158,6 +158,10 @@ body.dark .neuromorphic-inset {
 	box-shadow: inset 17px 17px 34px #313234, inset -17px -17px 34px #63666a;
 }
 
+body.dark .bg-neuromorphic{
+	background-color: #4a4c4f;
+}
+
 body.dark .neuromorphic2 {
 	box-shadow: 16px 16px 32px #3f4143, -16px -16px 32px #55575b;
 }

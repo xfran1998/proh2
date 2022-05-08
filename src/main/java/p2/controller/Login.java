@@ -32,7 +32,6 @@ public class Login extends HttpServlet {
 		String usuario = miParams.getString("user"); //Se obtiene el nombre de usuario
 		String clave = miParams.getString("password"); //Se obtiene la clave de usuario del formulario
 
-	
 		HttpSession sesion = request.getSession(true); //Se accede al entorno de la sesi�n
 		
 		if (sesion.getAttribute("usuario") != null) 

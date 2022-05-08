@@ -31,7 +31,7 @@ public class UserProfile extends HttpServlet {
 		}
 		else {
 			System.out.println("No hay usuario en sesion");
-			response.sendRedirect("/login.html");
+			response.sendRedirect("./login.html");
 		}
 	}
 }
