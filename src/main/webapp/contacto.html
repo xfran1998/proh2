@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link
+	href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap"
+	rel="stylesheet"
+	/>
+	<title>Contacto</title>
+</head>
+<body>
+	<div class="row">
+		<div class="card neuromorphic2 w-all">
+			<div id="body-content-wrapper">
+				<h3>
+					Contacta con nosotros
+				</h3>
+				<p>
+					Nuestras oficinas se encuentras en algun lugar del mundo y estamos a tu disposición para ayudarte. Puedes consultar nuestra ubicación en el mapa. Si tienes alguna duda o sugerencia, puedes escribirnos a nuestro correo electrónico.
+				</p>
+				<!-- google maps -->
+				<div id="map" class="neuromorphic2">
+					<iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=250%&amp;hl=es&amp;q=ETSE+(Ubicacion)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/car-satnav-gps/">GPS devices</a></iframe>
+				</div>
+				<p>
+					Ponte en contacto con nosotros a traves del siguiente formulario y nos pondremos en contacto contigo lo antes posible.
+				</p>
+				<form id="form-contacto" action="#" class="neuromorphic2">
+					<label for="nombre">Nombre <span class="required">*</span></label>
+					<input type="text" name="nombre" id="nombre" class="form__input" required>
+					<label for="empresa">Empresa</label>
+					<input type="text" name="empresa" id="empresa" class="form__input">
+					<label for="email">Email <span class="required">*</span></label>
+					<input type="email" name="email" id="email" class="form__input" required>
+					<label for="telefono">Teléfono <span class="required">*</span></label>
+					<input type="tel" name="telefono" id="telefono" pattern="[0-9]{9}" class="form__input" required>
+					<label for="">Selecciona un motivo</label>
+					<select name="motivo" id="motivo" class="form__input">
+						<option class="form__input" value="1">Sugerencia</option>
+						<option class="form__input" value="2">Queja</option>
+						<option class="form__input" value="4">Compra</option>
+						<option class="form__input" value="5">Reclamación</option>
+						<option class="form__input" value="6">Otro</option>
+					</select>
+					<label for="mensaje">Mensaje <span class="required">*</span></label>
+					<textarea name="mensaje" id="mensaje" cols="30" rows="10" class="form__input" required></textarea>
+					<input type="submit" value="Enviar" class="neuromorphic2" >
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
