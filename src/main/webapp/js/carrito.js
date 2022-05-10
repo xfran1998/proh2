@@ -96,10 +96,10 @@ var templateProd = (prod, id) => {
                         <img src="img/${prod.img}" alt="producto">        
                     </div>
                 </td>
-                <td>${prod.nombre}</td>
-                <td><input type="number" name="cantidad" id="cantidad" class="form__input" value="${prod.cant}"></td>
-                <td>${prod.precio}€</td>
-                <td class='precio-producto'>${prod.precio * prod.cant}€</td>
+                <td class="prod-nombre">${prod.nombre}</td>
+                <td><input type="number" name="cantidad" id="cantidad" class="form__input prod-cant" value="${prod.cant}"></td>
+                <td class="prod-precio">${prod.precio}€</td>
+                <td class="prod-precio-total precio-producto">${prod.precio * prod.cant}€</td>
                 <td>
                     <div class="carrito-btn-container">
                         <div data-id="${id}" data-type="add" class="add-1 carrito-option-btn"></div>

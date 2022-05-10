@@ -29,9 +29,52 @@
                     <tbody>
                     </tbody>
                 </table>
+				<br>
+				<div class="row">
+					<button id="btn-back" class="neuromorphic2 btn-carrito">Volver</button>
+					<button id="btn-comprar" class="neuromorphic2 btn-carrito">Comprar</button>
+				</div>
 			</div>
 		</div>
 	</div>
 	<script src="js/carrito.js"></script>
+	<script>
+		var volver = document.getElementById("btn-back");
+		var comprar = document.getElementById("btn-comprar");
+
+		console.log(volver);
+		console.log(comprar);
+		volver.addEventListener("click", function(){
+			(async => {
+				console.log("Volviendo...");
+				get_page_async('productos');
+			})();
+		});
+
+		comprar.addEventListener("click", function(){
+			(async => {
+				console.log("Comprando...");
+				
+				var body_form = {};
+	
+				document.querySelectorAll('tbody tr').forEach( tr => {
+					console.log(tr);
+					var id_prod =  tr.id.split("-")[1];
+					
+					body_form[id_prod] = {
+						"id": id_prod,
+						"cantidad": tr.querySelector('.prod-cant').value,
+						"precio": tr.querySelector('.prod-precio').innerHTML.substring(0, tr.querySelector('.prod-precio').innerHTML.length - 1),
+						"nombre": tr.querySelector('.prod-nombre').innerHTML
+					};
+
+					console.log(body_form);
+				});
+
+				get_page_async('recibo', 'POST', body_form);
+			})();
+		});
+
+	</script>
 </body>
 </html>

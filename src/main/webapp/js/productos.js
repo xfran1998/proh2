@@ -1,7 +1,7 @@
 /**
  * 
  */
- localStorage.clear();
+ //localStorage.clear();
  //localStorage.removeItem('carrito');
  var carrito_btns = document.querySelectorAll('.add-carrito');
  var user_carrito = JSON.parse(localStorage.getItem('carrito'));

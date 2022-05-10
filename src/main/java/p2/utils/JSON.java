@@ -10,55 +10,62 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 public class JSON {
-	Map<String, String> lista;
+	Map<Object, Object> lista;
 
 	public JSON() {
-		this.lista = new HashMap<String, String>();
+		this.lista = new HashMap<Object, Object>();
 	}
 
 	public JSON(String json_to_parse) {
-		this.lista = new HashMap<String, String>();
+		this.lista = new HashMap<Object, Object>();
 		parse(json_to_parse);
 	}
 
 	public void parse(String json_to_parse) {
-		String[] json_array = json_to_parse.split("\\{");
-		for (int i = 1; i < json_array.length; i++) {
-			String[] json_object = json_array[i].split("\\}");
-			String[] json_object_array = json_object[0].split(",");
-			for (int j = 0; j < json_object_array.length; j++) {
-				String[] json_object_array_pair = json_object_array[j].replaceAll("\"","").replaceAll(" ","").replaceAll("\n","").split(":");
-				if (json_object_array_pair.length == 2)
-					this.lista.put(json_object_array_pair[0], json_object_array_pair[1]);
-			}
+		// convert JSON to Map<Object, Object>
+		json_to_parse.replace("{", "");
+		String[] json_array = json_to_parse.split(",");
+		
+		
+		for (String json_pair : json_array) {
+			System.out.println("json_pair: " + json_pair);
+			String[] json_pair_array = json_pair.split(":");
+			System.out.println("json_pair: " + json_pair);
+			String key = json_pair_array[0].replace("\"", "");
+			System.out.println("key: " + key);
+			String value = json_pair_array[1].replace("\"", "");
+			System.out.println("value: " + value);
+			
+			lista.put(key, value);
 		}
 	}   
 
-	public String get(String hashIndex) {
+	public Object get(String hashIndex) {
 		return this.lista.get(hashIndex);
 	}
 
   public String getString(String hashIndex) {
-    return this.lista.get(hashIndex);
+	  System.out.println((String)this.lista.get(hashIndex));
+    return (String)this.lista.get(hashIndex);
   }
 
   public Integer getInteger(String hashIndex) {
-    return Integer.parseInt(this.lista.get(hashIndex));
+    return Integer.parseInt((String)this.lista.get(hashIndex));
   }
 
   public double getDouble(String hashIndex) {
-    return Double.parseDouble(this.lista.get(hashIndex));
+    return Double.parseDouble((String)this.lista.get(hashIndex));
   }
 
   public float getFloat(String hashIndex) {
-    return Float.parseFloat(this.lista.get(hashIndex));
+    return Float.parseFloat((String)this.lista.get(hashIndex));
   }
 
   public boolean getBoolean(String hashIndex) {
-    return Boolean.parseBoolean(this.lista.get(hashIndex));
+    return Boolean.parseBoolean((String)this.lista.get(hashIndex));
   }
 
-	public Map<String, String> getAll(){
+	public Map<Object, Object> getAll(){
 		return this.lista;
 	}
 	
@@ -112,7 +119,7 @@ public class JSON {
 		return body;
 	}
 
-  public static Map<String, String> getParams(String body){
+  public static Map<Object, Object> getParams(String body){
 		JSON myJson = new JSON(body);
 		return myJson.getAll();
 	}

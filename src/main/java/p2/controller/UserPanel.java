@@ -25,9 +25,7 @@ public class UserPanel extends HttpServlet {
 		AccesoBD con = AccesoBD.getInstance();
 		HttpSession session = request.getSession(true);
 
-		// refresh user session data if database has been updated since last login
 		UserBD user_session = (UserBD)session.getAttribute("usuario");
-		session.setAttribute("usuario", con.obtenerUserBD(user_session.getUsuario()));
 
 		if (user_session != null) {
 			request.getRequestDispatcher("usuario.jsp").forward(request, response);

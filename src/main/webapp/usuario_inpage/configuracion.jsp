@@ -32,17 +32,17 @@
 			<label for="nombre">Nombre</label>
 			<input type="text" name="nombre" id="nombre" class="form__input" value="<%=nombre%>">
 			<label for="nombre">Apellidos</label>
-			<input type="text" name="apellidos" id="apellidos" class="form__input">
+			<input type="text" name="apellidos" id="apellidos" class="form__input" value="<%=apellidos%>">
 			<label for="nombre">Domicilio</label>
-			<input type="text" name="domicilio" id="domicilio" class="form__input">
+			<input type="text" name="domicilio" id="domicilio" class="form__input" value="<%=domicilio%>">
 			<label for="nombre">Poblacion</label>
-			<input type="text" name="poblacion" id="poblacion" class="form__input">
+			<input type="text" name="poblacion" id="poblacion" class="form__input" value="<%=poblacion%>">
 			<label for="nombre">Provincia</label>
-			<input type="text" name="provincia" id="provincia" class="form__input">
+			<input type="text" name="provincia" id="provincia" class="form__input" value="<%=provincia%>">
 			<label for="provincia">CP</label>
-			<input type="text" name="cp" id="cp" class="form__input" pattern="[0-9]{5}">
+			<input type="text" name="cp" id="cp" class="form__input" pattern="[0-9]{5}" value="<%=cp%>">
 			<label for="telefono">Teléfono</label>
-			<input type="tel" name="telefono" id="telefono" pattern="[0-9]{9}" class="form__input">
+			<input type="tel" name="telefono" id="telefono" pattern="[0-9]{9}" class="form__input" value="<%=telefono%>">
 			<input type="submit" value="Actualizar" class="neuromorphic2 bg-neuromorphic">
 		</form>
 	</div>

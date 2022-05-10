@@ -1,4 +1,8 @@
 package p2.controller;
+import java.io.InputStreamReader;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
 
 import java.io.IOException;
 import java.util.Map;
@@ -12,7 +16,6 @@ import javax.servlet.http.HttpSession; // Para acceder al entorno de sesi�n
 
 import p2.AccesoBD;
 import p2.JavaBeans.UserBD;
-import p2.utils.JSON;
 
 /**
  *
@@ -24,13 +27,18 @@ public class Login extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String reqBody = JSON.getBody(request);
 		Boolean isLoged = false;
 		
-		JSON miParams = new JSON(reqBody);
+		// Parse JSON body
+		JsonReader reader = Json.createReader(new InputStreamReader(request.getInputStream()));
+		JsonObject jobj = reader.readObject();
 
-		String usuario = miParams.getString("user"); //Se obtiene el nombre de usuario
-		String clave = miParams.getString("password"); //Se obtiene la clave de usuario del formulario
+		String usuario = jobj.getString("user");
+		String clave = jobj.getString("password");
+
+		System.out.println("Usuario: " + usuario);
+		System.out.println("Clave: " + clave);
+
 
 		HttpSession sesion = request.getSession(true); //Se accede al entorno de la sesi�n
 		

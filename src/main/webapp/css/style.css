@@ -443,7 +443,7 @@ footer .card p {
 	height: 125px;
 }
 
-#form-contacto input[type="submit"]{
+#form-contacto input[type="submit"], .btn-carrito{
 	margin: 12px 0;
 	padding: 13px;
 	font-size: 13px;
@@ -455,6 +455,10 @@ footer .card p {
 	transition: all 0.25s ease, background-color 0s ease, color 0s ease,
 		box-shadow 0s ease;
 	border-radius: 8px;
+}
+
+.btn-carrito{
+	margin: 0 12px;
 }
 
 .add-carrito{

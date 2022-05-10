@@ -26,7 +26,7 @@ public class UserProfile extends HttpServlet {
 		UserBD user_session = (UserBD)session.getAttribute("usuario");
 		
 		if (user_session != null) {
-			session.setAttribute("pedidos", conexion.obtenerPedidosBD(user_session.getUsuario()));
+			request.setAttribute("pedidos", conexion.obtenerPedidosBD(user_session.getUsuario()));
 			request.getRequestDispatcher("/usuario_inpage/perfil.jsp").forward(request, response);
 		}
 		else {
