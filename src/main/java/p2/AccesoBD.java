@@ -84,6 +84,34 @@ public final class AccesoBD {
         cerrarConexionBD();
         return productos;
     }
+
+    public ProductoBD obtenerProductoBD(int id) {
+        abrirConexionBD();
+        ProductoBD producto = new ProductoBD();
+        try {
+            String con = "SELECT * FROM productos WHERE codigo = ?";
+            
+            PreparedStatement stmt = conexionBD.prepareStatement(con);
+            stmt.setInt(1, id);
+            ResultSet resultado = stmt.executeQuery();
+            
+            if (resultado.next()) // El usuario/clave se encuentra en la BD
+            {
+                producto.setId(resultado.getInt("codigo"));
+                producto.setNombre(resultado.getString("nombre"));
+                producto.setDescripcion(resultado.getString("descripcion"));
+                producto.setPrecio(resultado.getFloat("precio"));
+                producto.setStock(resultado.getInt("existencias"));
+                producto.setImagen(resultado.getString("imagen"));
+            } 
+        } catch (Exception e) {
+            System.err.println("Error ejecutando la consulta a la base de datos");
+            System.err.println(e.getMessage());
+        }
+        
+        cerrarConexionBD();
+        return producto;
+    }
     
     public List<ProductoBD> obtenerPedidosBD(String user) {
         abrirConexionBD();

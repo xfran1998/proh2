@@ -2,7 +2,6 @@ package p2.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -55,8 +54,16 @@ public class RecogerCarrito extends HttpServlet {
 			nuevo.setPrecio(Float.parseFloat(prod.getString("precio")));
 			nuevo.setStock(Integer.parseInt(prod.getString("cantidad")));
 			carrito.add(nuevo);
-		}
 
-		response.getWriter().println("{\"status\": 200, \"msg\": \"All okey\"}");
+			ProductoBD prodBD = con.obtenerProductoBD(nuevo.getId());
+			
+			if (prodBD.getStock() < nuevo.getStock()) 
+				nuevo.setStock(prodBD.getStock());
+
+		}
+		
+		request.setAttribute("carrito", carrito);
+        
+        request.getRequestDispatcher("/recibo.jsp").forward(request, response);
 	}
 }
