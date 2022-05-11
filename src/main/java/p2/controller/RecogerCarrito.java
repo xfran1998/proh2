@@ -48,18 +48,16 @@ public class RecogerCarrito extends HttpServlet {
 		for (String key : jobj.keySet()) { // Se recorren todos los productos pasados en el JSON
 			JsonObject prod = (JsonObject)jobj.getJsonObject(key);
 
-			ProductoBD nuevo = new ProductoBD();
-			nuevo.setId(Integer.parseInt(prod.getString("id")));
-			nuevo.setNombre(prod.getString("nombre"));
-			nuevo.setPrecio(Float.parseFloat(prod.getString("precio")));
-			nuevo.setStock(Integer.parseInt(prod.getString("cantidad")));
-			carrito.add(nuevo);
+			int cantidad = Integer.parseInt(prod.getString("cantidad"));
+			int id = Integer.parseInt(prod.getString("id"));
 
-			ProductoBD prodBD = con.obtenerProductoBD(nuevo.getId());
+			System.out.println("Cantidad: " + cantidad);
+			ProductoBD nuevo = con.obtenerProductoBD(id);
 			
-			if (prodBD.getStock() < nuevo.getStock()) 
-				nuevo.setStock(prodBD.getStock());
-
+			if (cantidad < nuevo.getStock()) // limitando la cantidad de productos a comprar
+				nuevo.setStock(cantidad);
+			
+			carrito.add(nuevo);
 		}
 		
 		request.setAttribute("carrito", carrito);
